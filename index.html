@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#2f6b4f">
-<title>白牧云的中药学（第4版）复习助手 · 唐德才 吴庆光 主编</title>
+<title>中药学（第4版）复习助手 · 唐德才 吴庆光 主编</title>
 <style>
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -21,10 +21,14 @@ button,select,input,textarea{font-family:inherit;font-size:14px}
 .brand h1{font-size:17px;letter-spacing:.5px}
 .brand .sub{font-size:11.5px;color:#7c8b80;line-height:1.35}
 .menu-btn{display:none;margin-left:auto;padding:8px 14px;border:1px solid #cfc4a8;border-radius:9px;
- background:#fffdf6;color:#25503a;cursor:pointer;font-weight:700}
+ background:#fffdf6;color:#25503a;cursor:pointer;font-weight:700;
+ transition:background .16s,border-color .16s,transform .1s}
+.menu-btn:active{transform:scale(.96)}
 .nav{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:9px}
 .nav button{padding:7px 15px;border:1px solid #ddd3ba;border-radius:999px;background:#fbf7ec;
- color:#25503a;cursor:pointer;white-space:nowrap;transition:background .15s}
+ color:#25503a;cursor:pointer;white-space:nowrap;
+ transition:background .16s,color .16s,border-color .16s,transform .1s}
+.nav button:active{transform:scale(.96)}
 .nav button.on{background:#2f6b4f;border-color:#2f6b4f;color:#fff;font-weight:700}
 /* ---------- 布局 ---------- */
 main{max-width:1180px;margin:0 auto;padding:14px 12px 70px}
@@ -36,7 +40,9 @@ main{max-width:1180px;margin:0 auto;padding:14px 12px 70px}
 .panel{background:#fffdf6;border:1px solid #e2d9c3;border-radius:12px;padding:14px;margin-bottom:14px}
 .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
 .bar select,.bar button{padding:7px 12px;border:1px solid #cfc4a8;border-radius:9px;
- background:#fffdf6;color:#25503a;cursor:pointer}
+ background:#fffdf6;color:#25503a;cursor:pointer;
+ transition:background .16s,border-color .16s,color .16s,transform .1s}
+.bar button:active{transform:scale(.96)}
 .bar button.primary{background:#2f6b4f;border-color:#2f6b4f;color:#fff;font-weight:700}
 .bar button.ghost{background:#fbf7ec}
 .chk{display:inline-flex;align-items:center;gap:5px;font-size:13.5px;color:#3c5a49;cursor:pointer}
@@ -46,15 +52,18 @@ main{max-width:1180px;margin:0 auto;padding:14px 12px 70px}
 .catpart{margin:0 0 6px;font-size:15px;font-weight:700;color:#16402c;padding:6px 0;
  border-bottom:2px solid #e2d9c3}
 .catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:10px 0 18px}
-.catch{background:#fffdf6;border:1px solid #e2d9c3;border-radius:10px;padding:10px 12px}
+.catch{background:#fffdf6;border:1px solid #e2d9c3;border-radius:10px;padding:10px 12px;
+ transition:border-color .18s,box-shadow .18s}
 .catch>button{width:100%;text-align:left;border:0;background:none;color:#25503a;font-weight:700;
  font-size:14.5px;cursor:pointer;padding:0;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
 .catch .num{font-size:11.5px;color:#8a9a8f;font-weight:400;flex:none}
 .catch .drugs{display:none;margin-top:8px;flex-wrap:wrap;gap:6px}
 .catch.open .drugs{display:flex}
 .chip{padding:3px 10px;border:1px solid #d8e2d9;border-radius:999px;background:#eef5ef;
- color:#25503a;font-size:12.5px;cursor:pointer}
+ color:#25503a;font-size:12.5px;cursor:pointer;
+ transition:background .16s,border-color .16s,transform .1s}
 .chip:hover{background:#dfeade}
+.chip:active{transform:scale(.94)}
 /* ---------- 背诵卡片 ---------- */
 .card{background:#fffdf6;border:1px solid #e2d9c3;border-radius:14px;padding:20px 18px;min-height:300px;
  box-shadow:0 2px 10px rgba(80,65,25,.06);cursor:pointer}
@@ -69,6 +78,12 @@ main{max-width:1180px;margin:0 auto;padding:14px 12px 70px}
 .face.back{display:none}
 .card.flipped .face.front{display:none}
 .card.flipped .face.back{display:block}
+/* 学习模式：正面隐藏，背面常显，一次看全知识点 */
+.card.study{cursor:default}
+.card.study .face.front{display:none}
+.card.study .face.back{display:block}
+.card.study .ctag{margin-bottom:8px}
+.card.study .face.back .crow{margin:8px 0}
 .keyline{margin-top:12px;padding:9px 12px;background:#fbf4f2;border-left:4px solid #b23b32;
  border-radius:0 8px 8px 0;font-size:14px;color:#7a2f28}
 /* ---------- 表格 ---------- */
@@ -80,7 +95,9 @@ tr:last-child td{border-bottom:0}
 td.nm{font-weight:700;color:#16402c;white-space:nowrap}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .tabs button{padding:6px 13px;border:1px solid #ddd3ba;border-radius:999px;background:#fbf7ec;
- color:#25503a;cursor:pointer;font-size:13.5px}
+ color:#25503a;cursor:pointer;font-size:13.5px;
+ transition:background .16s,color .16s,border-color .16s,transform .1s}
+.tabs button:active{transform:scale(.96)}
 .tabs button.on{background:#b23b32;border-color:#b23b32;color:#fff;font-weight:700}
 /* ---------- 刷题 ---------- */
 .q{border-top:1px dashed #e2d9c3;padding:15px 0}
@@ -90,7 +107,9 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
 .qh .tp{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;background:#e6f0e8;
  color:#2f6b4f;font-weight:400;margin-right:6px;vertical-align:1px}
 .opt{display:block;padding:7px 11px;border:1px solid #e6ddc6;border-radius:9px;margin:6px 0;
- cursor:pointer;background:#fffefa;font-size:14.5px;line-height:1.6}
+ cursor:pointer;background:#fffefa;font-size:14.5px;line-height:1.6;
+ transition:background .16s,border-color .16s,transform .1s}
+.opt:active{transform:scale(.99)}
 .opt.sel{border-color:#2f6b4f;background:#eef5ef}
 .opt.right{border-color:#2f6b4f;background:#e6f0e8}
 .opt.wrong{border-color:#b23b32;background:#f9eae7}
@@ -104,7 +123,8 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
 .mind>ul{border-left:0;padding-left:0}
 .mind li{position:relative;margin:5px 0}
 .mind .node{display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border:1px solid #e2d9c3;
- border-radius:9px;background:#fffdf6;cursor:pointer;font-size:14px;color:#1d3a2b}
+ border-radius:9px;background:#fffdf6;cursor:pointer;font-size:14px;color:#1d3a2b;
+ transition:background .16s,border-color .16s}
 .mind .node:hover{background:#f3f7f2}
 .mind .node.lv0{background:#2f6b4f;color:#fff;border-color:#2f6b4f;font-weight:700;font-size:15px}
 .mind .node.lv1{background:#e6f0e8;font-weight:700;color:#16402c}
@@ -116,21 +136,36 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
 /* ---------- 错题本 ---------- */
 .empty{padding:26px 12px;text-align:center;color:#8a9a8f;font-size:14px}
 .mini{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;border:1px solid #e2d9c3;
- border-radius:10px;background:#fffdf6;margin-bottom:8px}
+ border-radius:10px;background:#fffdf6;margin-bottom:8px;
+ transition:border-color .18s,box-shadow .18s}
 .mini b{font-size:15px;color:#16402c}
 .mini .sp{margin-left:auto;display:flex;gap:6px}
 .mini button{padding:4px 11px;border:1px solid #cfc4a8;border-radius:8px;background:#fbf7ec;
- color:#25503a;cursor:pointer;font-size:13px}
+ color:#25503a;cursor:pointer;font-size:13px;
+ transition:background .16s,border-color .16s,transform .1s}
+.mini button:active{transform:scale(.96)}
 /* ---------- 提示 ---------- */
 .toast{position:fixed;left:50%;bottom:36px;transform:translateX(-50%) translateY(18px);
  background:#2f6b4f;color:#fff;padding:9px 20px;border-radius:999px;font-size:13.5px;opacity:0;
- pointer-events:none;transition:.2s;z-index:200;max-width:88vw;text-align:center}
+ pointer-events:none;z-index:200;max-width:88vw;text-align:center;
+ transition:opacity .22s ease,transform .22s cubic-bezier(.2,.8,.3,1)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ---------- 动效：只动 opacity / transform，不触发重排，手机上同样跟手 ---------- */
+@keyframes fxUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fxIn{from{opacity:0}to{opacity:1}}
+.view.on{animation:fxUp .24s ease-out}
+.card .face{animation:fxIn .18s ease-out}
+.catch .drugs{animation:fxUp .18s ease-out}
+.mind li>ul{animation:fxIn .15s ease-out}
+.ana.on{animation:fxUp .2s ease-out}
+.score{animation:fxUp .22s ease-out}
+.mini{animation:fxUp .18s ease-out}
+.empty{animation:fxIn .2s ease-out}
 /* ---------- 移动端 ---------- */
 @media (max-width:760px){
  .menu-btn{display:block}
  .nav{display:none;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:10px}
- .nav.open{display:grid}
+ .nav.open{display:grid;animation:fxUp .18s ease-out}
  .nav button{width:100%;text-align:center;padding:10px 6px;border-radius:10px}
  .brand h1{font-size:15.5px}
  .brand .sub{font-size:10.5px}
@@ -139,8 +174,25 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
  .crow{font-size:14.5px}
  .catgrid{grid-template-columns:1fr}
  main{padding:12px 10px 70px}
+ .view.on{animation-duration:.18s}
+ .card .face{animation-duration:.15s}
+ .catch .drugs{animation-duration:.15s}
+ .toast{transition-duration:.18s}
 }
 @media (min-width:761px){ .nav{display:flex!important} }
+/* 有真指针的设备才给 hover，触屏不粘滞 */
+@media (hover:hover){
+ .catch:hover{border-color:#d5c9ab;box-shadow:0 2px 8px rgba(80,65,25,.07)}
+ .mini:hover{border-color:#d5c9ab;box-shadow:0 2px 8px rgba(80,65,25,.07)}
+ .opt:hover:not(.sel):not(.right):not(.wrong){border-color:#c9bfa4;background:#fffdf3}
+ .bar button:hover,.tabs button:hover,.mini button:hover{border-color:#b9ad90}
+}
+/* 系统开了「减弱动态效果」就全部关掉 */
+@media (prefers-reduced-motion:reduce){
+ *,*::before,*::after{
+  animation-duration:.001ms!important;animation-iteration-count:1!important;
+  transition-duration:.001ms!important}
+}
 </style>
 </head>
 <body>
@@ -150,7 +202,7 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
     <div class="brand">
       <div class="logo">中</div>
       <div>
-        <h1>白牧云的中药学 · 复习助手</h1>
+        <h1>中药学 · 复习助手</h1>
         <p class="sub">第4版 · 唐德才　吴庆光　主编 · 全国高等中医药院校规划教材</p>
       </div>
       <button class="menu-btn" id="menuBtn">☰ 模块</button>
@@ -191,6 +243,7 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
       <select id="cardChapter"></select>
       <label class="chk"><input type="checkbox" id="onlyFav"> 只看收藏</label>
       <label class="chk"><input type="checkbox" id="onlyKey"> 只看重点</label>
+      <label class="chk"><input type="checkbox" id="studyMode"> 学习模式</label>
     </div>
     <div class="card" id="cardBox"></div>
     <div class="bar" style="margin-top:12px">
@@ -202,7 +255,7 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
       <button class="ghost" id="cFav">收藏卡片</button>
     </div>
     <div class="muted" id="cardProgress"></div>
-    <div class="muted" style="margin-top:6px">提示：直接点击卡片也可翻转；标记的重点与收藏会保存在本机浏览器中。</div>
+    <div class="muted" style="margin-top:6px">提示：直接点击卡片也可翻转；勾选「学习模式」可一次看全知识点；标记的重点与收藏会保存在本机浏览器中。</div>
   </section>
 
   <!-- ============ 模块三：刷题练习 ============ -->
@@ -1220,6 +1273,14 @@ el('catalogBody').addEventListener('click',function(e){
 var cardScopeEl=el('cardScope'),cardChapterEl=el('cardChapter'),
     onlyFavEl=el('onlyFav'),onlyKeyEl=el('onlyKey');
 var cardIdx=0,flipped=false;
+/* 学习模式：打开后卡片背面常显，不用翻卡就能看全一味药的全部知识点 */
+var studyModeEl=el('studyMode'),studyOn=false;
+var UI_KEY='zhongyaoxue_v4_ui';
+try{studyOn=localStorage.getItem(UI_KEY)==='study';}catch(e){}
+function applyStudyUI(){
+  studyModeEl.checked=studyOn;
+  el('cFlip').style.display=studyOn?'none':'';
+}
 
 function buildCardChapterOptions(){
   var scope=cardScopeEl.value,h='<option value="all">全部章节</option>';
@@ -1286,8 +1347,9 @@ function renderCard(){
     h+='</div><div class="keyline"><b>高频考点：</b>'+o.exam+'</div></div>';
   }
   box.innerHTML=h;
+  box.classList.toggle('study',studyOn);
   box.classList.toggle('flipped',flipped);
-  el('cardProgress').textContent='第 '+(cardIdx+1)+' / '+L.length+' 张'+(faved?'　♥ 已收藏':'')+(keyed?'　★ 重点':'');
+  el('cardProgress').textContent='第 '+(cardIdx+1)+' / '+L.length+' 张'+(studyOn?'　【学习模式】':'')+(faved?'　♥ 已收藏':'')+(keyed?'　★ 重点':'');
 }
 function jump(id){
   cardScopeEl.value='all';buildCardChapterOptions();cardChapterEl.value='all';
@@ -1297,10 +1359,16 @@ function jump(id){
   cardIdx=k;flipped=false;
   go('cards');renderCard();window.scrollTo(0,0);
 }
-el('cardBox').addEventListener('click',function(){flipped=!flipped;el('cardBox').classList.toggle('flipped',flipped);});
+el('cardBox').addEventListener('click',function(){
+  if(studyOn) return;
+  flipped=!flipped;el('cardBox').classList.toggle('flipped',flipped);
+});
 el('cPrev').addEventListener('click',function(){cardIdx--;flipped=false;renderCard();});
 el('cNext').addEventListener('click',function(){cardIdx++;flipped=false;renderCard();});
-el('cFlip').addEventListener('click',function(){flipped=!flipped;el('cardBox').classList.toggle('flipped',flipped);});
+el('cFlip').addEventListener('click',function(){
+  if(studyOn){toast('学习模式下不用翻卡');return;}
+  flipped=!flipped;el('cardBox').classList.toggle('flipped',flipped);
+});
 el('cRand').addEventListener('click',function(){
   var L=currentList();if(!L.length){toast('当前没有可背诵的卡片');return;}
   cardIdx=Math.floor(Math.random()*L.length);flipped=false;renderCard();
@@ -1321,6 +1389,14 @@ cardScopeEl.addEventListener('change',function(){buildCardChapterOptions();cardC
 cardChapterEl.addEventListener('change',function(){cardIdx=0;flipped=false;renderCard();});
 onlyFavEl.addEventListener('change',function(){cardIdx=0;flipped=false;renderCard();});
 onlyKeyEl.addEventListener('change',function(){cardIdx=0;flipped=false;renderCard();});
+studyModeEl.addEventListener('change',function(){
+  studyOn=studyModeEl.checked;
+  flipped=false;
+  try{localStorage.setItem(UI_KEY,studyOn?'study':'card');}catch(e){}
+  applyStudyUI();
+  renderCard();
+  toast(studyOn?'已开启学习模式':'已回到翻卡模式');
+});
 
 /* ---------- 模块三：刷题练习 ---------- */
 var qChapterEl=el('qChapter'),qTypeEl=el('qType'),qCountEl=el('qCount');
@@ -1587,6 +1663,7 @@ el('clearKey').addEventListener('click',function(){if(!S.key.length){toast('还�
 buildCardChapterOptions();
 buildQuizChapters();
 renderCatalog();
+applyStudyUI();
 renderCard();
 renderTableTabs();
 renderTable();
