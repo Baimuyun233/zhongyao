@@ -22,12 +22,12 @@ button,select,input,textarea{font-family:inherit;font-size:14px}
 .brand .sub{font-size:11.5px;color:#7c8b80;line-height:1.35}
 .menu-btn{display:none;margin-left:auto;padding:8px 14px;border:1px solid #cfc4a8;border-radius:9px;
  background:#fffdf6;color:#25503a;cursor:pointer;font-weight:700;
- transition:background .16s,border-color .16s,transform .1s}
+ transition:background .22s,border-color .22s,transform .18s}
 .menu-btn:active{transform:scale(.96)}
 .nav{display:flex;gap:6px;flex-wrap:wrap;padding-bottom:9px}
 .nav button{padding:7px 15px;border:1px solid #ddd3ba;border-radius:999px;background:#fbf7ec;
  color:#25503a;cursor:pointer;white-space:nowrap;
- transition:background .16s,color .16s,border-color .16s,transform .1s}
+ transition:background .22s,color .22s,border-color .22s,transform .18s}
 .nav button:active{transform:scale(.96)}
 .nav button.on{background:#2f6b4f;border-color:#2f6b4f;color:#fff;font-weight:700}
 /* ---------- 布局 ---------- */
@@ -41,7 +41,7 @@ main{max-width:1180px;margin:0 auto;padding:14px 12px 70px}
 .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
 .bar select,.bar button{padding:7px 12px;border:1px solid #cfc4a8;border-radius:9px;
  background:#fffdf6;color:#25503a;cursor:pointer;
- transition:background .16s,border-color .16s,color .16s,transform .1s}
+ transition:background .22s,border-color .22s,color .22s,transform .18s}
 .bar button:active{transform:scale(.96)}
 .bar button.primary{background:#2f6b4f;border-color:#2f6b4f;color:#fff;font-weight:700}
 .bar button.ghost{background:#fbf7ec}
@@ -53,7 +53,7 @@ main{max-width:1180px;margin:0 auto;padding:14px 12px 70px}
  border-bottom:2px solid #e2d9c3}
 .catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:10px 0 18px}
 .catch{background:#fffdf6;border:1px solid #e2d9c3;border-radius:10px;padding:10px 12px;
- transition:border-color .18s,box-shadow .18s}
+ transition:border-color .26s,box-shadow .26s}
 .catch>button{width:100%;text-align:left;border:0;background:none;color:#25503a;font-weight:700;
  font-size:14.5px;cursor:pointer;padding:0;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
 .catch .num{font-size:11.5px;color:#8a9a8f;font-weight:400;flex:none}
@@ -61,12 +61,14 @@ main{max-width:1180px;margin:0 auto;padding:14px 12px 70px}
 .catch.open .drugs{display:flex}
 .chip{padding:3px 10px;border:1px solid #d8e2d9;border-radius:999px;background:#eef5ef;
  color:#25503a;font-size:12.5px;cursor:pointer;
- transition:background .16s,border-color .16s,transform .1s}
+ transition:background .22s,border-color .22s,transform .18s}
 .chip:hover{background:#dfeade}
 .chip:active{transform:scale(.94)}
 /* ---------- 背诵卡片 ---------- */
-.card{background:#fffdf6;border:1px solid #e2d9c3;border-radius:14px;padding:20px 18px;min-height:300px;
- box-shadow:0 2px 10px rgba(80,65,25,.06);cursor:pointer}
+.card{background:#fffdf6;border:1px solid #e2d9c3;border-radius:14px;min-height:300px;
+ box-shadow:0 2px 10px rgba(80,65,25,.06);cursor:pointer;
+ padding:0;overflow:hidden;position:relative;touch-action:pan-y;-webkit-touch-callout:none;
+ transition:height .32s cubic-bezier(.25,.8,.25,1)}
 .card .cname{font-size:26px;font-weight:700;letter-spacing:2px;color:#16402c;line-height:1.3}
 .card .ctag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;background:#e6f0e8;
  color:#2f6b4f;margin:0 6px 6px 0}
@@ -84,6 +86,14 @@ main{max-width:1180px;margin:0 auto;padding:14px 12px 70px}
 .card.study .face.back{display:block}
 .card.study .ctag{margin-bottom:8px}
 .card.study .face.back .crow{margin:8px 0}
+/* 滑动翻页的滑轨：三张平铺，整体平移 */
+.deck{display:flex;width:100%;align-items:flex-start;will-change:transform;backface-visibility:hidden}
+.slide{flex:0 0 100%;width:100%;padding:20px 18px;position:relative}
+.slide+.slide::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:1px;
+ background:#e8dfcb;opacity:0;transition:opacity .25s ease}
+.card.glide .deck{transition:transform var(--glide,420ms) cubic-bezier(.25,.8,.25,1)}
+.card.dragging{cursor:grabbing;-webkit-user-select:none;user-select:none}
+.card.dragging .slide+.slide::before{opacity:1}
 .keyline{margin-top:12px;padding:9px 12px;background:#fbf4f2;border-left:4px solid #b23b32;
  border-radius:0 8px 8px 0;font-size:14px;color:#7a2f28}
 /* ---------- 表格 ---------- */
@@ -96,7 +106,7 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
 .tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .tabs button{padding:6px 13px;border:1px solid #ddd3ba;border-radius:999px;background:#fbf7ec;
  color:#25503a;cursor:pointer;font-size:13.5px;
- transition:background .16s,color .16s,border-color .16s,transform .1s}
+ transition:background .22s,color .22s,border-color .22s,transform .18s}
 .tabs button:active{transform:scale(.96)}
 .tabs button.on{background:#b23b32;border-color:#b23b32;color:#fff;font-weight:700}
 /* ---------- 刷题 ---------- */
@@ -108,7 +118,7 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
  color:#2f6b4f;font-weight:400;margin-right:6px;vertical-align:1px}
 .opt{display:block;padding:7px 11px;border:1px solid #e6ddc6;border-radius:9px;margin:6px 0;
  cursor:pointer;background:#fffefa;font-size:14.5px;line-height:1.6;
- transition:background .16s,border-color .16s,transform .1s}
+ transition:background .22s,border-color .22s,transform .18s}
 .opt:active{transform:scale(.99)}
 .opt.sel{border-color:#2f6b4f;background:#eef5ef}
 .opt.right{border-color:#2f6b4f;background:#e6f0e8}
@@ -124,7 +134,7 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
 .mind li{position:relative;margin:5px 0}
 .mind .node{display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border:1px solid #e2d9c3;
  border-radius:9px;background:#fffdf6;cursor:pointer;font-size:14px;color:#1d3a2b;
- transition:background .16s,border-color .16s}
+ transition:background .22s,border-color .22s}
 .mind .node:hover{background:#f3f7f2}
 .mind .node.lv0{background:#2f6b4f;color:#fff;border-color:#2f6b4f;font-weight:700;font-size:15px}
 .mind .node.lv1{background:#e6f0e8;font-weight:700;color:#16402c}
@@ -137,47 +147,48 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
 .empty{padding:26px 12px;text-align:center;color:#8a9a8f;font-size:14px}
 .mini{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;border:1px solid #e2d9c3;
  border-radius:10px;background:#fffdf6;margin-bottom:8px;
- transition:border-color .18s,box-shadow .18s}
+ transition:border-color .26s,box-shadow .26s}
 .mini b{font-size:15px;color:#16402c}
 .mini .sp{margin-left:auto;display:flex;gap:6px}
 .mini button{padding:4px 11px;border:1px solid #cfc4a8;border-radius:8px;background:#fbf7ec;
  color:#25503a;cursor:pointer;font-size:13px;
- transition:background .16s,border-color .16s,transform .1s}
+ transition:background .22s,border-color .22s,transform .18s}
 .mini button:active{transform:scale(.96)}
 /* ---------- 提示 ---------- */
 .toast{position:fixed;left:50%;bottom:36px;transform:translateX(-50%) translateY(18px);
  background:#2f6b4f;color:#fff;padding:9px 20px;border-radius:999px;font-size:13.5px;opacity:0;
  pointer-events:none;z-index:200;max-width:88vw;text-align:center;
- transition:opacity .22s ease,transform .22s cubic-bezier(.2,.8,.3,1)}
+ transition:opacity .32s ease,transform .32s cubic-bezier(.25,.8,.25,1)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 /* ---------- 动效：只动 opacity / transform，不触发重排，手机上同样跟手 ---------- */
-@keyframes fxUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes fxUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes fxIn{from{opacity:0}to{opacity:1}}
-.view.on{animation:fxUp .24s ease-out}
-.card .face{animation:fxIn .18s ease-out}
-.catch .drugs{animation:fxUp .18s ease-out}
-.mind li>ul{animation:fxIn .15s ease-out}
-.ana.on{animation:fxUp .2s ease-out}
-.score{animation:fxUp .22s ease-out}
-.mini{animation:fxUp .18s ease-out}
-.empty{animation:fxIn .2s ease-out}
+.view.on{animation:fxUp .38s cubic-bezier(.25,.8,.25,1)}
+.card.anim .face{animation:fxIn .3s cubic-bezier(.25,.8,.25,1)}
+.catch .drugs{animation:fxUp .28s cubic-bezier(.25,.8,.25,1)}
+.mind li>ul{animation:fxIn .24s cubic-bezier(.25,.8,.25,1)}
+.ana.on{animation:fxUp .32s cubic-bezier(.25,.8,.25,1)}
+.score{animation:fxUp .34s cubic-bezier(.25,.8,.25,1)}
+.mini{animation:fxUp .3s cubic-bezier(.25,.8,.25,1)}
+.empty{animation:fxIn .32s cubic-bezier(.25,.8,.25,1)}
 /* ---------- 移动端 ---------- */
 @media (max-width:760px){
  .menu-btn{display:block}
  .nav{display:none;grid-template-columns:1fr 1fr;gap:8px;padding-bottom:10px}
- .nav.open{display:grid;animation:fxUp .18s ease-out}
+ .nav.open{display:grid;animation:fxUp .28s cubic-bezier(.25,.8,.25,1)}
  .nav button{width:100%;text-align:center;padding:10px 6px;border-radius:10px}
  .brand h1{font-size:15.5px}
  .brand .sub{font-size:10.5px}
- .card{padding:16px 13px;min-height:260px}
+ .card{min-height:260px}
+ .slide{padding:16px 13px}
  .card .cname{font-size:22px}
  .crow{font-size:14.5px}
  .catgrid{grid-template-columns:1fr}
  main{padding:12px 10px 70px}
- .view.on{animation-duration:.18s}
- .card .face{animation-duration:.15s}
- .catch .drugs{animation-duration:.15s}
- .toast{transition-duration:.18s}
+ .view.on{animation-duration:.3s}
+ .card .face{animation-duration:.24s}
+ .catch .drugs{animation-duration:.22s}
+ .toast{transition-duration:.26s}
 }
 @media (min-width:761px){ .nav{display:flex!important} }
 /* 有真指针的设备才给 hover，触屏不粘滞 */
@@ -1282,6 +1293,163 @@ function applyStudyUI(){
   el('cFlip').style.display=studyOn?'none':'';
 }
 
+/* 滑动翻页：三卡滑轨，左右拖卡片换张，松手按位移/速度决定翻还是弹回 */
+var REST=-100;                          /* 滑轨基准位置：中间那张正好居中 */
+var DUR_DEF=420;                        /* 按钮/键盘翻页没有速度参考，用这个时长 */
+var cardBoxEl=el('cardBox');
+var deck=null,deckList=[],deckTok=0,animating=false,swallowClick=false,drag=null,rafId=0;
+var pendingFin=null,baseOff=REST;
+/* 松手的速度决定还要滑多久：甩得快就短些，慢慢拖就长些，比一律同一个时长顺 */
+function glideMs(dist,speed){
+  var s=Math.max(Math.abs(speed),0.35);
+  return Math.max(300,Math.min(560,Math.abs(dist)/s));
+}
+function setDeck(pct,px,anim,ms){
+  if(!deck) return;
+  if(anim){cardBoxEl.style.setProperty('--glide',(ms||DUR_DEF)+'ms');cardBoxEl.classList.add('glide');}
+  else cardBoxEl.classList.remove('glide');
+  var t='translate3d('+pct+'%,0,0)';
+  if(px) t+=' translate3d('+px+'px,0,0)';
+  deck.style.transform=t;
+}
+/* 动画没跑完就被抓住时，得知道此刻停在哪，好接着往下拖 */
+function deckNowPct(){
+  if(!deck||!window.getComputedStyle) return REST;
+  var m=window.getComputedStyle(deck).transform;
+  if(!m||m==='none') return REST;
+  var nums=m.match(/-?[\d.]+/g);
+  if(!nums) return REST;
+  var x=parseFloat(m.indexOf('matrix3d')===0?nums[12]:nums[4]);
+  if(!isFinite(x)) return REST;
+  return x/(deck.offsetWidth||1)*100;
+}
+/* 卡片高度按当前这张量。卡片元素是常驻的，height 过渡才能真的动起来 */
+function sizeDeck(){
+  var cur=deck&&deck.children&&deck.children[1];
+  if(cur) cardBoxEl.style.height=cur.offsetHeight+'px';
+}
+function setFlip(v){
+  flipped=v;
+  cardBoxEl.classList.add('anim');
+  cardBoxEl.classList.toggle('flipped',flipped);
+  sizeDeck();                           /* 正反面内容不一样高，翻完得重新量 */
+}
+/* 等这次位移走完再干下一件事，transitionend 不靠谱时用定时器兜底 */
+function afterDeck(ms,fn){
+  if(!deck){fn();return;}
+  var tok=++deckTok,d=deck,done=false;
+  function fin(){
+    if(done||tok!==deckTok) return;
+    done=true;
+    pendingFin=null;
+    d.removeEventListener('transitionend',onEnd);
+    fn();
+  }
+  function onEnd(ev){if(ev.target===d&&ev.propertyName==='transform') fin();}
+  pendingFin=fin;
+  d.addEventListener('transitionend',onEnd);
+  setTimeout(fin,ms+80);
+}
+function nudge(dir){
+  setDeck(REST,-dir*16,true,200);
+  afterDeck(200,function(){setDeck(REST,0,true,300);});
+}
+function commitTo(dir,ni,ms){
+  animating=true;
+  setDeck(dir>0?REST-100:REST+100,0,true,ms);
+  afterDeck(ms,function(){
+    animating=false;cardIdx=ni;flipped=false;
+    renderCard(true);                   /* 已经滑到位了，别再淡入一次，不然归位时会闪 */
+  });
+}
+function stepCard(dir){
+  if(!deckList.length) return;
+  if(animating){                        /* 连按不干等：先把上一段走完，再接着滑 */
+    var f=pendingFin;
+    pendingFin=null;
+    if(f) f();
+  }
+  var ni=cardIdx+dir;
+  if(ni<0||ni>=deckList.length){
+    nudge(dir);
+    toast(dir>0?'已经是最后一张':'已经是第一张');
+    return;
+  }
+  commitTo(dir,ni,DUR_DEF);
+}
+function onDown(e){
+  if(e.button&&e.button!==0) return;
+  if(!deckList.length) return;
+  deckTok++;                            /* 作废没跑完的回调，允许中途接管 */
+  animating=false;
+  pendingFin=null;
+  baseOff=deckNowPct();
+  setDeck(baseOff,0,false);
+  drag={id:e.pointerId,x0:e.clientX,y0:e.clientY,dx:0,lock:false,lx:e.clientX,lt:Date.now(),v:0};
+  cardBoxEl.style.userSelect='none';
+  try{cardBoxEl.setPointerCapture(e.pointerId);}catch(err){}
+}
+function onMove(e){
+  if(!drag||e.pointerId!==drag.id) return;
+  var dx=e.clientX-drag.x0,dy=e.clientY-drag.y0;
+  if(!drag.lock){
+    if(Math.abs(dx)<8&&Math.abs(dy)<8) return;
+    if(Math.abs(dx)<Math.abs(dy)*1.2){drag=null;return;}   /* 纵向为主，还给页面滚动 */
+    drag.lock=true;
+    cardBoxEl.classList.add('dragging');
+  }
+  var t=Date.now();
+  if(t>drag.lt){drag.v=(e.clientX-drag.lx)/(t-drag.lt);drag.lx=e.clientX;drag.lt=t;}
+  var d=dx;
+  if((d>0&&cardIdx<=0)||(d<0&&cardIdx>=deckList.length-1)) d=d*0.35;   /* 到头了加阻尼 */
+  drag.dx=d;
+  if(!rafId) rafId=requestAnimationFrame(function(){
+    rafId=0;
+    if(drag) setDeck(baseOff,drag.dx,false);
+  });
+}
+function endDrag(e,commit){
+  if(!drag||(e&&e.pointerId!==drag.id)) return;
+  var d=drag,w=cardBoxEl.clientWidth||300;
+  drag=null;
+  if(rafId){cancelAnimationFrame(rafId);rafId=0;}
+  cardBoxEl.classList.remove('dragging');
+  cardBoxEl.style.userSelect='';
+  try{cardBoxEl.releasePointerCapture(d.id);}catch(err){}
+  if(!d.lock) return;                     /* 没锁定就是普通点击，交给 click 处理 */
+  swallowClick=true;
+  setTimeout(function(){swallowClick=false;},400);
+  /* 把接管时残留的偏移折算进来，接着上次停的位置继续算 */
+  var off=d.dx+(baseOff-REST)/100*w;
+  var dir=off<0?1:-1;
+  var far=Math.abs(off)>w*0.22;
+  var flick=Math.abs(d.v)>0.42&&Math.abs(d.dx)>20;
+  if(!commit||!(far||flick)){
+    setDeck(REST,0,true,glideMs(off,d.v));
+    baseOff=REST;
+    return;
+  }
+  var ni=cardIdx+dir;
+  if(ni<0||ni>=deckList.length){
+    nudge(dir);
+    toast(dir>0?'已经是最后一张':'已经是第一张');
+    return;
+  }
+  commitTo(dir,ni,glideMs(w-Math.abs(off),d.v));
+}
+cardBoxEl.addEventListener('pointerdown',onDown);
+cardBoxEl.addEventListener('pointermove',onMove);
+cardBoxEl.addEventListener('pointerup',function(e){endDrag(e,true);});
+cardBoxEl.addEventListener('pointercancel',function(e){endDrag(e,false);});
+cardBoxEl.addEventListener('dragstart',function(e){e.preventDefault();});
+document.addEventListener('keydown',function(e){
+  if(!el('v-cards').classList.contains('on')) return;
+  var tag=(e.target&&e.target.tagName)||'';
+  if(tag==='INPUT'||tag==='SELECT'||tag==='TEXTAREA') return;
+  if(e.key==='ArrowLeft'||e.key==='Left'){e.preventDefault();stepCard(-1);}
+  else if(e.key==='ArrowRight'||e.key==='Right'){e.preventDefault();stepCard(1);}
+});
+
 function buildCardChapterOptions(){
   var scope=cardScopeEl.value,h='<option value="all">全部章节</option>';
   CATALOG.forEach(function(c){
@@ -1307,17 +1475,8 @@ function cardById(id){
   HERBS.forEach(function(h){if(h.id===id) r=h;});
   return r;
 }
-function renderCard(){
-  var L=currentList(),box=el('cardBox');
-  if(!L.length){
-    box.innerHTML='<div class="empty">当前筛选条件下暂无卡片。<br>可切换章节或取消筛选条件。</div>';
-    box.classList.remove('flipped');
-    el('cardProgress').textContent='';
-    return;
-  }
-  if(cardIdx>=L.length) cardIdx=0;
-  if(cardIdx<0) cardIdx=L.length-1;
-  var o=L[cardIdx];
+/* 单张卡片的正反面 HTML */
+function cardInner(o){
   var faved=S.fav.indexOf(o.id)>=0, keyed=S.key.indexOf(o.id)>=0, h='';
   var tags=(keyed?'<span class="ctag red">★ 重点</span>':'')+(faved?'<span class="ctag red">♥ 已收藏</span>':'');
   if(o.type==='herb'){
@@ -1346,10 +1505,40 @@ function renderCard(){
     o.pts.forEach(function(p,i){h+='<div class="crow">'+(i+1)+'．'+p+'</div>';});
     h+='</div><div class="keyline"><b>高频考点：</b>'+o.exam+'</div></div>';
   }
-  box.innerHTML=h;
+  return h;
+}
+/* noAnim：滑动落位后的重绘，不再放一次淡入，否则归位时会闪 */
+function renderCard(noAnim){
+  var L=currentList(),box=cardBoxEl;
+  deckList=L;
+  if(!L.length){
+    deck=null;
+    box.classList.remove('anim');
+    box.style.height='';
+    box.innerHTML='<div class="empty">当前筛选条件下暂无卡片。<br>可切换章节或取消筛选条件。</div>';
+    box.classList.remove('flipped');
+    el('cardProgress').textContent='';
+    return;
+  }
+  if(cardIdx>=L.length) cardIdx=0;
+  if(cardIdx<0) cardIdx=L.length-1;
+  var o=L[cardIdx];
+  var pv=(cardIdx-1+L.length)%L.length,nx=(cardIdx+1)%L.length;
+  var hasP=cardIdx>0,hasN=cardIdx<L.length-1;
+  var slides='<div class="slide">'+(hasP?cardInner(L[pv]):'')+'</div>';
+  slides+='<div class="slide">'+cardInner(o)+'</div>';
+  slides+='<div class="slide">'+(hasN?cardInner(L[nx]):'')+'</div>';
+  box.classList.toggle('anim',!noAnim);
+  box.classList.remove('glide');       /* 新节点直接落位，别带上一次的过渡 */
+  /* 位置直接写在标签上，免得新节点先按没位移的状态画一帧 */
+  box.innerHTML='<div class="deck" style="transform:translate3d('+REST+'%,0,0)">'+slides+'</div>';
+  deck=box.firstChild;
+  baseOff=REST;                       /* 新滑轨就是标准位，之前的接管偏移作废 */
   box.classList.toggle('study',studyOn);
   box.classList.toggle('flipped',flipped);
+  var faved=S.fav.indexOf(o.id)>=0, keyed=S.key.indexOf(o.id)>=0;
   el('cardProgress').textContent='第 '+(cardIdx+1)+' / '+L.length+' 张'+(studyOn?'　【学习模式】':'')+(faved?'　♥ 已收藏':'')+(keyed?'　★ 重点':'');
+  sizeDeck();
 }
 function jump(id){
   cardScopeEl.value='all';buildCardChapterOptions();cardChapterEl.value='all';
@@ -1359,15 +1548,16 @@ function jump(id){
   cardIdx=k;flipped=false;
   go('cards');renderCard();window.scrollTo(0,0);
 }
-el('cardBox').addEventListener('click',function(){
+cardBoxEl.addEventListener('click',function(){
+  if(swallowClick){swallowClick=false;return;}   /* 刚滑完，这次 click 不算翻转 */
   if(studyOn) return;
-  flipped=!flipped;el('cardBox').classList.toggle('flipped',flipped);
+  setFlip(!flipped);
 });
-el('cPrev').addEventListener('click',function(){cardIdx--;flipped=false;renderCard();});
-el('cNext').addEventListener('click',function(){cardIdx++;flipped=false;renderCard();});
+el('cPrev').addEventListener('click',function(){stepCard(-1);});
+el('cNext').addEventListener('click',function(){stepCard(1);});
 el('cFlip').addEventListener('click',function(){
   if(studyOn){toast('学习模式下不用翻卡');return;}
-  flipped=!flipped;el('cardBox').classList.toggle('flipped',flipped);
+  setFlip(!flipped);
 });
 el('cRand').addEventListener('click',function(){
   var L=currentList();if(!L.length){toast('当前没有可背诵的卡片');return;}
