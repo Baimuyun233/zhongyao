@@ -205,6 +205,27 @@ td.nm{font-weight:700;color:#16402c;white-space:nowrap}
   transition-duration:.001ms!important}
 }
 </style>
+<!-- 百度统计：只有用网址访问时才加载。本地双击打开不加载、也不发任何请求。
+     去 tongji.baidu.com 新建网站后，把拿到的 32 位站点代码填进下面 BAIDU_ID 的引号里，再重新上传。 -->
+<script>
+(function(){
+  var BAIDU_ID='cff230f0d6bed69aed2c516008803959';
+  if(!BAIDU_ID) return;
+  if(location.protocol!=='http:'&&location.protocol!=='https:') return;
+  var m=String(BAIDU_ID).match(/[0-9a-f]{32}/i);
+  if(!m){
+    if(window.console) console.warn('[统计] BAIDU_ID 不是百度统计的站点代码，已跳过');
+    return;
+  }
+  try{
+    window._hmt=window._hmt||[];
+    var hm=document.createElement('script');
+    hm.async=true;
+    hm.src='https://hm.baidu.com/hm.js?'+m[0];
+    (document.head||document.getElementsByTagName('head')[0]).appendChild(hm);
+  }catch(e){}
+})();
+</script>
 </head>
 <body>
 
